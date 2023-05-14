@@ -1,4 +1,4 @@
-from collections import deque
+from collections import deque, defaultdict
 from station_line import lines
 
 # 전처리
@@ -33,13 +33,23 @@ def bfs(START):
     return visit_station
 
 # make results
-result = {k: set() for k in range(10)}  # 10은 임의로 잡은 것
+result = defaultdict(set)
 for station in lines.keys():
     for k, v in bfs(station).items():
         if (station, k) not in result[v]:  # (k, station)와 (station, k) 중복 방지
             result[v].add((k, station))
 
 # write to file
-with open("result.txt", "w") as w:
-    w.write(str(result))
+with open("result.txt", "w") as f:
+    x = []
+    for k, v in result.items():
+        y = [str(item).replace("'", "") for item in v]
+        x.append(f"[{k}개 노선을 거치는 경우의 수]\n{', '.join(y)}")
+    f.write("\n\n".join(x))
+    # f.write("\n\n".join([f'[{k}개 노선을 거치는 경우의 수]\n' + ', '.join([str(item).replace("'", "") for item in v]) for k, v in result.items()]))
 
+# statistics
+a, b, c, d = len(result[1]), len(result[2]), len(result[3]), len(result[4])
+station_cnt = len(lines)
+combinations = station_cnt * (station_cnt-1) // 2
+print(f"1개 노선: {a}가지\n2개 노선: {b}가지\n3개 노선: {c}가지\n4개 노선: {d}가지\n합계: {a+b+c+d}가지\n\n전체 역 수: {station_cnt}개\n가능한 조합 수: {combinations}가지")
