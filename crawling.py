@@ -5,8 +5,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 # headless mode
 options = webdriver.ChromeOptions()
-options.add_argument('headless')
-options.add_argument('window-size=1920x1080')
+options.add_argument("headless")
+options.add_argument("window-size=1920x1080")
 options.add_argument("disable-gpu")
 
 # get link
