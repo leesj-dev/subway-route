@@ -43,7 +43,7 @@ for station in lines.keys():
             result[v].add((k, station))
 
 # write to file
-with open("result_new.txt", "w") as f:
+with open("result.txt", "w") as f:
     x = []
     for k, v in result.items():
         y = [str(item).replace("'", "") for item in v]
@@ -55,6 +55,6 @@ with open("result_new.txt", "w") as f:
 # statistics
 a, b, c, d = len(result[1]), len(result[2]), len(result[3]), len(result[4])
 station_cnt = len(lines)
-combinations = station_cnt * (station_cnt-1) // 2
+combinations = station_cnt * (station_cnt - 1) // 2
 print(f"1개 노선: {a}가지\n2개 노선: {b}가지\n3개 노선: {c}가지\n4개 노선: {d}가지\n합계: {a+b+c+d}가지\n\n전체 역 수: {station_cnt}개\n가능한 조합 수: {combinations}가지")
 # print("%s seconds" % (time.time() - start_time))
