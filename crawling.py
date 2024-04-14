@@ -11,7 +11,7 @@ options.add_argument("disable-gpu")
 
 # get link
 LINK = "https://ko.wikipedia.org/wiki/%EC%88%98%EB%8F%84%EA%B6%8C_%EC%A0%84%EC%B2%A0%EC%97%AD_%EB%AA%A9%EB%A1%9D"
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), chrome_options=options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver.get(LINK)
 
 stations = {}
